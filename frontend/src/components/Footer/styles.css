@@ -1,0 +1,15 @@
+footer {
+  background: #FF7214;
+  height: 58px;
+  position: relative;
+}
+
+.footer-p {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 18px;
+}

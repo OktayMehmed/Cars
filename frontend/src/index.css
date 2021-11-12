@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+main {
+  min-height: 80vh;
+  margin: 10px 50px
+}
