@@ -1,5 +1,5 @@
 header {
-  background: #FF6600;
+  background: #ff6600;
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,59 @@ header {
 .header-article {
   margin: 0 30px;
   display: flex;
+}
+
+.header-navigation {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 0;
+  background: white;
+  z-index: 2;
+  overflow-x: hidden;
+  transition: all .6s ease-out;
+}
+
+.header-navigation h1 {
+  padding: 12px 15px 18px;
+  border-bottom: 1px solid #80808080;
+  font-size: 25px;
+}
+
+.header-navigation a {
+  padding: 20px 15px;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  color: black;
+}
+
+.header-navigation a:hover {
+  color: #00000090;
+}
+
+.header-navigation a:nth-child(4) {
+  border-top: 1px solid #80808080;
+}
+
+.header-navigation-closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 30px;
+  border: none;
+  background: none;
+  font-size: 40px;
+}
+
+.header-navigation-closeBtn:hover {
+  cursor: pointer;
+  color: #00000090;
+}
+
+.fa-plus {
+  font-size: 12px;
 }
 
 .header-article-menu {
@@ -25,13 +78,13 @@ header {
   cursor: pointer;
 }
 
-.header-article-menu:hover:before{
+.header-article-menu:hover:before {
   position: absolute;
-  content: '';
+  content: "";
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #FF7214;
+  background: #ff7214;
   top: 8px;
   left: -7px;
   z-index: -1;
@@ -43,6 +96,6 @@ header {
 }
 
 .header-article-logo:hover {
-  color: #FFE0CC;
+  color: #ffe0cc;
   cursor: pointer;
 }
