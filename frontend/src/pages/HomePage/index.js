@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
     <section className='home-cars'>
       {cars.map(car => (
-        <Car car={car} />
+        <Car key={car._id} car={car} />
       ))}
     </section> 
     </>

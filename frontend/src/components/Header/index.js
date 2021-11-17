@@ -1,24 +1,52 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./styles.css";
 
-const Header = () => {
-  const [showNav, setShowNav] = useState(false)
+const Header = ({ carId }) => {
+  const [showNav, setShowNav] = useState(false);
+
+  const { pathname } = useLocation();
 
   return (
     <>
       <header>
         <article className="header-article">
-          <nav className='header-navigation' style={{ width: showNav ? 250 : 0 }}>
-          <h1>Menu</h1>
-          <a href="#">Home</a>
-          <a href="#">Login</a>
-          <a href="#"><i class="fas fa-plus"></i> Post a car</a>
-          <button className="header-navigation-closeBtn" onClick={() => setShowNav(false)}>&times;</button>
+          <nav
+            className="header-navigation"
+            style={{ width: showNav ? 250 : 0 }}
+          >
+            <h1>Menu</h1>
+            <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/post-car">
+              <i className="fas fa-plus"></i> Post a car
+            </Link>
+            <button
+              className="header-navigation-closeBtn"
+              onClick={() => setShowNav(false)}
+            >
+              &times;
+            </button>
           </nav>
-          <button className="header-article-menu" onClick={() => setShowNav(true)}>
-            <i className="fas fa-bars"></i>
-          </button>
-          <h1 className="header-article-logo">CARS.com</h1>
+
+          {pathname === `/car/${carId}` ? (
+            <button className="header-article-menu">
+              <Link className="header-article-back" to="/">
+                <i className="fas fa-arrow-left"></i>
+              </Link>
+            </button>
+          ) : (
+            <button
+              className="header-article-menu"
+              onClick={() => setShowNav(true)}
+            >
+              <i className="fas fa-bars"></i>
+            </button>
+          )}
+
+          <Link to="/">
+            <h1 className="header-article-logo">CARS.com</h1>
+          </Link>
         </article>
       </header>
     </>

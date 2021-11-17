@@ -11,6 +11,10 @@ header {
   display: flex;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header-navigation {
   position: fixed;
   top: 0px;
@@ -98,4 +102,8 @@ header {
 .header-article-logo:hover {
   color: #ffe0cc;
   cursor: pointer;
+}
+
+.header-article-back {
+  color: white;
 }
