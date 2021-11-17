@@ -39,6 +39,7 @@ a {
   font-size: 15px;
   display: block;
   color: black;
+  white-space: nowrap;
 }
 
 .header-navigation a:hover {
