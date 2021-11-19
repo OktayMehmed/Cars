@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./styles.css";
 
-import cars from "../../cars";
 const CarPage = ({ setCarId }) => {
+  const [car, setCar] = useState({});
   const { id } = useParams();
-
-  const car = cars.find((c) => c._id === id);
 
   useEffect(() => {
     setCarId(id);
+
+    fetch(`http://localhost:8000/api/cars/${id}`)
+      .then((res) => res.json())
+      .then((data) => setCar(data));
   }, [id, setCarId]);
 
   return (
@@ -20,7 +22,9 @@ const CarPage = ({ setCarId }) => {
             {car.make} {car.model}
           </h1>
 
-          <p className="car-info-price"><strong>Price:</strong> ${car.price}</p>
+          <p className="car-info-price">
+            <strong>Price:</strong> ${car.price}
+          </p>
 
           <p className="car-info-year">
             <strong>Year: </strong>
@@ -38,11 +42,12 @@ const CarPage = ({ setCarId }) => {
           </p>
           <p className="car-info-desc">{car.description}</p>
 
-          <button className="car-info-number"><i className="fas fa-phone"></i> 0{car.phone}</button>
+          <button className="car-info-number">
+            <i className="fas fa-phone"></i> 0{car.phone}
+          </button>
         </article>
 
         <img className="car-image" src={car.image} alt={car.make} />
-
       </section>
     </>
   );
