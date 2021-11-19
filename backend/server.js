@@ -1,6 +1,9 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const cors = require("cors");
 const cars = require("./data/cars");
+
+dotenv.config();
 
 const app = express();
 
@@ -19,4 +22,6 @@ app.get("/api/cars/:id", (req, res) => {
   res.json(car);
 });
 
-app.listen(8000, console.log("Server is running on port 8000!"));
+const port = process.env.PORT || 8000;
+
+app.listen(port, console.log(`Server is running on port ${port}!`));
