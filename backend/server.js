@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const cars = require("./data/cars");
+const Cars = require("./routes/Cars");
 
 dotenv.config();
 
@@ -16,14 +17,7 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-app.get("/api/cars", (req, res) => {
-  res.json(cars);
-});
-
-app.get("/api/cars/:id", (req, res) => {
-  const car = cars.find((c) => c._id === req.params.id);
-  res.json(car);
-});
+app.use("/api/cars", Cars);
 
 const port = process.env.PORT || 8000;
 

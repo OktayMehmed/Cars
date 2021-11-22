@@ -1,4 +1,4 @@
-const mongoose = require("mognoose");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const users = require("./data/users");

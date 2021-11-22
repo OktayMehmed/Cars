@@ -1,6 +1,5 @@
 const cars = [
   {
-    _id: "1",
     make: "BMW",
     model: "M5",
     image: "/images/bmw-m5.jpg",
@@ -15,7 +14,6 @@ const cars = [
   },
 
   {
-    _id: "2",
     make: "MERCEDES-BENZ",
     model: "E63 AMG",
     image: "/images/mercedes-e63.jpg",
@@ -30,7 +28,6 @@ const cars = [
   },
 
   {
-    _id: "3",
     make: "Audi",
     model: "RS7",
     image: "/images/audi-rs7.jpg",
@@ -45,7 +42,6 @@ const cars = [
   },
 
   {
-    _id: "4",
     make: "VW",
     model: "Arteon",
     image: "/images/vw-arteon.jpg",
@@ -60,7 +56,6 @@ const cars = [
   },
 
   {
-    _id: "5",
     make: "Ford",
     model: "Mustang",
     image: "/images/ford-mustang.jpg",
@@ -75,7 +70,6 @@ const cars = [
   },
 
   {
-    _id: "6",
     make: "Renault",
     model: "Megane",
     image: "/images/renault-megane.jpg",
@@ -90,7 +84,6 @@ const cars = [
   },
 
   {
-    _id: "7",
     make: "Lamborghini",
     model: "Aventador",
     image: "/images/aventador.jpg",
@@ -105,7 +98,6 @@ const cars = [
   },
 
   {
-    _id: "8",
     make: "Jeep",
     model: "Grand Cherokee",
     image: "/images/jeep.jpg",
