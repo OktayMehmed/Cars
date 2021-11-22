@@ -2,8 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
-const cars = require("./data/cars");
 const Cars = require("./routes/Cars");
+const { notFound, errorHandler } = require("./middleware/errors");
 
 dotenv.config();
 
@@ -18,6 +18,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/cars", Cars);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const port = process.env.PORT || 8000;
 
