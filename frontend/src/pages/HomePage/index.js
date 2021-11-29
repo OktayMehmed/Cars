@@ -1,23 +1,33 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Car from "../../components/Car";
+import Loader from "../../components/Loader";
+import { listCars } from "../../actions/Cars";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 
 const HomePage = () => {
-  const [cars, setCars] = useState([]);
+  const dispatch = useDispatch();
+
+  const carsList = useSelector((state) => state.carsList);
+  const { loading, cars, error } = carsList;
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/cars")
-      .then((res) => res.json())
-      .then((data) => setCars(data));
-  }, []);
+    dispatch(listCars());
+  }, [dispatch]);
 
   return (
     <>
-      <section className="home-cars">
-        {cars.map((car) => (
-          <Car key={car._id} car={car} />
-        ))}
-      </section>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <h3>{error}</h3>
+      ) : (
+        <section className="home-cars">
+          {cars.map((car) => (
+            <Car key={car._id} car={car} />
+          ))}
+        </section>
+      )}
     </>
   );
 };
