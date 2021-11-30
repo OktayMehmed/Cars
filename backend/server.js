@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const Cars = require("./routes/Cars");
+const User = require("./routes/User");
 const { notFound, errorHandler } = require("./middleware/errors");
 
 dotenv.config();
@@ -11,6 +12,8 @@ connectDB();
 
 const app = express();
 
+app.use(express.json())
+
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -18,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/cars", Cars);
+app.use("/api/users", User);
 
 app.use(notFound);
 app.use(errorHandler);
