@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const generateToken = require("../utils/generateToken");
 
 // @desc Auth User
 // @route POST /api/users/login
@@ -14,7 +15,7 @@ const authUser = (req, res) => {
           _id: user._id,
           email: user.email,
           name: user.name,
-          token: null,
+          token: generateToken(user._id),
         });
       } else {
         res.status(401).json({ message: "Invalid email or password" });
