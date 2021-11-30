@@ -17,9 +17,17 @@ const Header = ({ carId }) => {
           >
             <h1>Menu</h1>
             <Link to="/">Home</Link>
-            <Link to="/login">Login</Link>
+            <Link to="/login">
+              <i className="fas fa-sign-in-alt"></i> Login
+            </Link>
+            <Link to="/profile">
+              <i className="fas fa-user"></i> Profile
+            </Link>
             <Link to="/post-car">
               <i className="fas fa-plus"></i> Post a car
+            </Link>
+            <Link to="/my-cars">
+              <i className="fas fa-car"></i> My Cars
             </Link>
             <button
               className="header-navigation-closeBtn"

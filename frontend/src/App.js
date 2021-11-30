@@ -9,7 +9,6 @@ import CarPage from "./pages/CarPage";
 const App = () => {
   const [carId, setCarId] = useState('');
 
-
   return (
     <Router>
       <Header carId={carId} />

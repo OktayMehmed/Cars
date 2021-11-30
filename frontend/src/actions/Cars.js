@@ -1,10 +1,18 @@
 const baseUrl = "http://localhost:8000";
 
+function resStatus(res, message) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error(`${message}`);
+  }
+}
+
 export const listCars = () => (dispatch) => {
   dispatch({ type: "CARS_LIST_REQUEST" });
 
   fetch(`${baseUrl}/api/cars`)
-    .then((res) => res.json())
+    .then((res) => resStatus(res, "Cars not found"))
     .then((data) => {
       dispatch({
         type: "CARS_LIST_SUCCESS",
@@ -14,10 +22,7 @@ export const listCars = () => (dispatch) => {
     .catch((error) => {
       dispatch({
         type: "CARS_LIST_FAIL",
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.response,
+        payload: error.message,
       });
     });
 };
@@ -26,13 +31,7 @@ export const listCarsDetails = (id) => (dispatch) => {
   dispatch({ type: "CARS_DETAILS_REQUEST" });
 
   fetch(`${baseUrl}/api/cars/${id}`)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error('Car not found')
-      }
-    })
+    .then((res) => resStatus(res, "Car not found"))
     .then((data) => {
       dispatch({
         type: "CARS_DETAILS_SUCCESS",
@@ -42,7 +41,7 @@ export const listCarsDetails = (id) => (dispatch) => {
     .catch((error) => {
       dispatch({
         type: "CARS_DETAILS_FAIL",
-        payload: error.message
+        payload: error.message,
       });
     });
 };
