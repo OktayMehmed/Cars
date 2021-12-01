@@ -26,4 +26,19 @@ const authUser = (req, res) => {
     });
 };
 
-module.exports = { authUser };
+// @desc Get user profile
+// @route GET /api/users/profile
+// @access Private
+const getUserProfile = (req, res) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      res.json({
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+      });
+    })
+    .catch(() => res.status(404).json({ message: "User not found" }));
+};
+
+module.exports = { authUser, getUserProfile };
