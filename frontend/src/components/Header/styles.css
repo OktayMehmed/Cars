@@ -10,6 +10,12 @@ header {
   margin-bottom: 0;
 }
 
+.header-username {
+  padding: 0 15px;
+  color: #00000085;
+  margin-bottom: 0;
+}
+
 .header-article {
   margin: 0 30px;
   display: flex;
@@ -28,7 +34,7 @@ a {
   background: white;
   z-index: 2;
   overflow-x: hidden;
-  transition: all .6s ease-out;
+  transition: all 0.6s ease-out;
 }
 
 .header-navigation h1 {
