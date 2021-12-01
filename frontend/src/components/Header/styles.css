@@ -6,6 +6,10 @@ header {
   align-items: center;
 }
 
+.header-menu {
+  margin-bottom: 0;
+}
+
 .header-article {
   margin: 0 30px;
   display: flex;

@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  background: #f3f1f1;
+
   font-family: sans-serif
 }
 
@@ -10,6 +12,5 @@ body {
 }
 
 main {
-  background: #f3f1f1;
   min-height: 85vh;
 }

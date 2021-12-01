@@ -15,7 +15,7 @@ const Header = ({ carId }) => {
             className="header-navigation"
             style={{ width: showNav ? 250 : 0 }}
           >
-            <h1>Menu</h1>
+            <h1 className='header-menu'>Menu</h1>
             <Link to="/">Home</Link>
             <Link to="/login">
               <i className="fas fa-sign-in-alt"></i> Login

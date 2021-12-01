@@ -18,7 +18,7 @@ export const login = (email, password) => (dispatch) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => resStatus(res, "Incorect email or password"))
+    .then((res) => resStatus(res, "Enter email and password"))
     .then((data) => {
       dispatch({
         type: "USER_LOGIN_SUCCESS",
