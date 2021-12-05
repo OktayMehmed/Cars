@@ -53,7 +53,7 @@ const LoginPage = () => {
           <p className="user-login-register">
             Don't have an account yet, click{" "}
             <Link to={"/register"} className="link-login-register">
-              Register
+              Sign up
             </Link>
             .
           </p>

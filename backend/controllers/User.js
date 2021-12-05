@@ -29,30 +29,34 @@ const authUser = (req, res) => {
 // @desc Register new user
 // @route POST /api/users
 // @access Public
-const registerUser = (req, res) => {
+const registerUser = (req, res, next) => {
   const { name, email, password } = req.body;
 
   User.findOne({ email }).then((userExist) => {
     if (userExist) {
       res.status(400).json({ message: "User already exist" });
       return;
+    } else {
+      User.create({
+        name,
+        email,
+        password,
+      })
+        .then((user) => {
+          if (user) {
+            res.json({
+              _id: user._id,
+              email: user.email,
+              name: user.name,
+              token: generateToken(user._id),
+            });
+          } else {
+            res.status(400).json({ message: "Invalid user data" });
+          }
+        })
+        .catch((e) => res.status(400).json(e));
     }
   });
-
-  User.create({
-    name,
-    email,
-    password,
-  })
-    .then((user) => {
-      res.json({
-        _id: user._id,
-        email: user.email,
-        name: user.name,
-        token: generateToken(user._id),
-      });
-    })
-    .catch(() => res.status(400).json({ message: "Invalid user data" }));
 };
 
 // @desc Get user profile

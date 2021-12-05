@@ -59,13 +59,12 @@ export const register = (name, email, password) => async (dispatch) => {
       payload: data,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(data));
-
   } catch (error) {
     const resError = await error;
+
     dispatch({
       type: "USER_REGISTER_FAIL",
-      payload: resError.message,
+      payload: resError.message
     });
   }
 };
