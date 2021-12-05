@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -8,15 +8,13 @@ import CarPage from "./pages/CarPage";
 import LoginPage from "./pages/LoginPage";
 
 const App = () => {
-  const [carId, setCarId] = useState("");
-
   return (
     <Router>
-      <Header carId={carId} />
+      <Header />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/car/:id" element={<CarPage setCarId={setCarId} />} />
+          <Route path="/car/:id" element={<CarPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </main>

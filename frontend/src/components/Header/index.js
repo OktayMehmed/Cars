@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/User";
 import "./styles.css";
 
-const Header = ({ carId }) => {
+const Header = () => {
   const [showNav, setShowNav] = useState(false);
 
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const { pathname } = useLocation();
+  const carsDetails = useSelector((state) => state.carsDetails);
+  const { car, error: carError } = carsDetails;
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -60,7 +62,7 @@ const Header = ({ carId }) => {
             </button>
           </nav>
 
-          {pathname === `/car/${carId}` ? (
+          {carError || pathname === `/car/${car._id}` ? (
             <button className="header-article-menu">
               <Link className="header-article-back" to="/">
                 <i className="fas fa-arrow-left"></i>

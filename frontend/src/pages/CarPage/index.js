@@ -6,7 +6,7 @@ import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import "./styles.css";
 
-const CarPage = ({ setCarId }) => {
+const CarPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -14,9 +14,8 @@ const CarPage = ({ setCarId }) => {
   const { loading, car, error } = carsDetails;
 
   useEffect(() => {
-    setCarId(id);
     dispatch(listCarsDetails(id));
-  }, [id, setCarId, dispatch]);
+  }, [id, dispatch]);
 
   return (
     <>
