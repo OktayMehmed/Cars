@@ -75,7 +75,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
 
     const {
       userLogin: { userInfo },
-    } = getState;
+    } = getState();
 
     const res = await fetch(`${baseUrl}/api/users/profile`, {
       method: "GET",

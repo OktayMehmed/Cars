@@ -16,7 +16,6 @@ const RegisterPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      console.log("in");
       navigate("/");
     }
   }, [navigate, userInfo]);
