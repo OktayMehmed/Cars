@@ -99,6 +99,44 @@ export const getUserDetails = () => async (dispatch, getState) => {
   }
 };
 
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "USER_UPDATE_REQUEST" });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const res = await fetch(`${baseUrl}/api/users/profile`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+      body: JSON.stringify(user),
+    });
+    const data = await resStatus(res);
+
+    dispatch({
+      type: "USER_UPDATE_SUCCESS",
+      payload: data,
+    });
+
+    dispatch({
+      type: "USER_LOGIN_SUCCESS",
+      payload: data,
+    });
+
+    localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (error) {
+    const resError = await error;
+    dispatch({
+      type: "USER_UPDATE_FAIL",
+      payload: resError.message,
+    });
+  }
+};
+
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: "USER_LOGOUT" });

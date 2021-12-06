@@ -1,0 +1,13 @@
+.success-message {
+  border: 1px solid;
+  margin: 10px auto;
+  padding: 15px 10px 15px 10px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  max-width: 460px;
+  color: #496d4e;
+  background-color: rgb(201 243 201);
+  display: block;
+  text-align: center;
+	border: none;
+}

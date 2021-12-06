@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
-import { getUserDetails } from "../../actions/User";
+import { getUserDetails, updateUserProfile } from "../../actions/User";
 
 const ProfilePage = () => {
   const [name, setName] = useState("");
@@ -21,22 +21,22 @@ const ProfilePage = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  console.log(user)
-
-  console.log(userInfo);
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const { success } = userUpdate;
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user || !user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: "USER_UPDATE_RESET" });
         dispatch(getUserDetails());
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [dispatch, user, navigate, userInfo]);
+  }, [dispatch, user, navigate, userInfo, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ const ProfilePage = () => {
     if (password !== confirmPassword) {
       setMessage("Passwords don't match");
     } else {
-      // DISPATCH UPDATE PROFILE
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
