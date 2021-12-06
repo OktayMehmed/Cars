@@ -32,6 +32,7 @@ const RegisterPage = () => {
       setMessage("Passwords don't match");
     } else {
       dispatch(register(name, email, password));
+      navigate("/");
     }
   };
 

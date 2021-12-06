@@ -58,13 +58,43 @@ export const register = (name, email, password) => async (dispatch) => {
       type: "USER_LOGIN_SUCCESS",
       payload: data,
     });
-
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     const resError = await error;
 
     dispatch({
       type: "USER_REGISTER_FAIL",
-      payload: resError.message
+      payload: resError.message,
+    });
+  }
+};
+
+export const getUserDetails = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "USER_DETAILS_REQUEST" });
+
+    const {
+      userLogin: { userInfo },
+    } = getState;
+
+    const res = await fetch(`${baseUrl}/api/users/profile`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    const data = await resStatus(res);
+
+    dispatch({
+      type: "USER_DETAILS_SUCCESS",
+      payload: data,
+    });
+  } catch (error) {
+    const resError = await error;
+    dispatch({
+      type: "USER_DETAILS_FAIL",
+      payload: resError.message,
     });
   }
 };
