@@ -44,7 +44,7 @@ const registerUser = (req, res, next) => {
       })
         .then((user) => {
           if (user) {
-            res.json({
+            res.status(201).json({
               _id: user._id,
               email: user.email,
               name: user.name,
@@ -74,4 +74,28 @@ const getUserProfile = (req, res) => {
     .catch(() => res.status(404).json({ message: "User not found" }));
 };
 
-module.exports = { authUser, registerUser, getUserProfile };
+// @desc Update user profile
+// @route PUT /api/users/profile
+// @access Private
+const updateUserProfile = (req, res) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+
+      user.save().then((updatedUser) => {
+        res.json({
+          _id: updatedUser._id,
+          email: updatedUser.email,
+          name: updatedUser.name,
+          token: generateToken(updatedUser._id),
+        });
+      });
+    })
+    .catch(() => res.status(404).json({ message: "User not found" }));
+};
+
+module.exports = { authUser, registerUser, getUserProfile, updateUserProfile };
