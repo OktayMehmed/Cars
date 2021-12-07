@@ -8,7 +8,11 @@ import {
   userDetailsReducer,
   userUpdateReducer,
 } from "./reducers/User";
-import { carsListReducer, carsDetailsReducer } from "./reducers/Cars";
+import {
+  carsListReducer,
+  carsDetailsReducer,
+  myCarsReducer,
+} from "./reducers/Cars";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -17,6 +21,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   carsList: carsListReducer,
   carsDetails: carsDetailsReducer,
+  myCars: myCarsReducer,
 });
 
 const userFromStorage = localStorage.getItem("userInfo")

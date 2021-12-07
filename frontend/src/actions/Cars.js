@@ -48,3 +48,32 @@ export const listCarsDetails = (id) => async (dispatch) => {
     });
   }
 };
+
+export const listMyCars = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "MY_CARS_REQUEST" });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+
+    const data = await resStatus(res);
+    dispatch({
+      type: "MY_CARS_SUCCESS",
+      payload: data,
+    });
+  } catch (error) {
+    const resError = await error;
+    dispatch({
+      type: "MY_CARS_FAIL",
+      payload: resError.message,
+    });
+  }
+};
