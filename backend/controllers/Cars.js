@@ -16,4 +16,11 @@ const getCarsById = (req, res) => {
     .catch(() => res.status(404).json({ message: "Car not found" }));
 };
 
-module.exports = { getCars, getCarsById };
+// @desc Get logged in user cars
+// @route GET /api/cars/mycars
+// @access Private
+const getUserCars = (req, res) => {
+  Cars.find({ user: req.user._id }).then((cars) => res.json(cars));
+};
+
+module.exports = { getCars, getCarsById, getUserCars };
