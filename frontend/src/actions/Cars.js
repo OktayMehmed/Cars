@@ -57,7 +57,7 @@ export const listMyCars = () => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+    const res = await fetch(`${baseUrl}/api/cars/mycars`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${userInfo.token}`,

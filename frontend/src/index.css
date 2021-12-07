@@ -5,6 +5,10 @@ body {
   font-family: sans-serif
 }
 
+p {
+  font-family: Georgia, serif;
+}
+
 *,
 *::after,
 *::before {

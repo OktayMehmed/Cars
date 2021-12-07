@@ -3,6 +3,7 @@ import Car from "../../components/Car";
 import Loader from "../../components/Loader";
 import { listCars } from "../../actions/Cars";
 import { useDispatch, useSelector } from "react-redux";
+import ErrorMessage from "../../components/ErrorMessage";
 import "./styles.css";
 
 const HomePage = () => {
@@ -20,7 +21,7 @@ const HomePage = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <h3>{error}</h3>
+        <ErrorMessage>{error}</ErrorMessage>
       ) : (
         <section className="home-cars">
           {cars.map((car) => (

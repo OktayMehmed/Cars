@@ -8,6 +8,7 @@ import CarPage from "./pages/CarPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
+import MyCarsPage from "./pages/MyCarsPage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/mycars" element={<MyCarsPage />} />
         </Routes>
       </main>
       <Footer />
