@@ -36,3 +36,16 @@ export const myCarsReducer = (state = { cars: [] }, action) => {
       return state;
   }
 };
+
+export const createCarReducer = (state = { car: {} }, action) => {
+  switch (action.type) {
+    case "CREATE_CAR_REQUEST":
+      return { loading: true };
+    case "CREATE_CAR_SUCCESS":
+      return { loading: false, car: action.payload };
+    case "CREATE_CAR_FAIL":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
