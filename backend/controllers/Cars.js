@@ -23,4 +23,29 @@ const getUserCars = (req, res) => {
   Cars.find({ user: req.user._id }).then((cars) => res.json(cars));
 };
 
-module.exports = { getCars, getCarsById, getUserCars };
+// @desc Create new car
+// @route POST /api/cars
+// @access Private
+const createCar = (req, res) => {
+  const {make, model, image, price, year, fuel, color, power, phone, description } = req.body;
+
+  const car = new Cars({
+        user: req.user._id,
+        make: make,
+        model: model,
+        image: image,
+        price: price,
+        year: year,
+        fuel: fuel,
+        color: color,
+        power: power,
+        phone: phone,
+        description: description
+  })
+
+  car.save()
+  .then((createdCar) => res.status(201).json(createdCar))
+  .catch(() => res.status(400).json({ message: "Please enter all fields" }))
+};
+
+module.exports = { getCars, getCarsById, getUserCars, createCar };

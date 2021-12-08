@@ -5,7 +5,6 @@ const carsSchema = mongoose.Schema(
   {
     user: {
       type: ObjectId,
-      required: true,
       ref: "User",
     },
 
