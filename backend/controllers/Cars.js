@@ -27,25 +27,48 @@ const getUserCars = (req, res) => {
 // @route POST /api/cars
 // @access Private
 const createCar = (req, res) => {
-  const {make, model, image, price, year, fuel, color, power, phone, description } = req.body;
+  const {
+    make,
+    model,
+    image,
+    price,
+    year,
+    fuel,
+    color,
+    power,
+    phone,
+    description,
+  } = req.body;
 
   const car = new Cars({
-        user: req.user._id,
-        make: make,
-        model: model,
-        image: image,
-        price: price,
-        year: year,
-        fuel: fuel,
-        color: color,
-        power: power,
-        phone: phone,
-        description: description
-  })
+    user: req.user._id,
+    make: make,
+    model: model,
+    image: image,
+    price: price,
+    year: year,
+    fuel: fuel,
+    color: color,
+    power: power,
+    phone: phone,
+    description: description,
+  });
 
-  car.save()
-  .then((createdCar) => res.status(201).json(createdCar))
-  .catch((e) => res.status(400).json({ message: "Please enter all fields" }))
+  car
+    .save()
+    .then((createdCar) => res.status(201).json(createdCar))
+    .catch((e) => res.status(400).json({ message: "Please enter all fields" }));
 };
 
-module.exports = { getCars, getCarsById, getUserCars, createCar };
+// @desc Delete a car
+// @route DELETE /api/cars/:id
+// @access Private
+const deleteCar = (req, res) => {
+  Cars.findById(req.params.id)
+    .then((car) => {
+      car.remove();
+      res.json({ message: "Car was been deleted" });
+    })
+    .catch(() => res.status(404).json({ message: "Car not found" }));
+};
+module.exports = { getCars, getCarsById, getUserCars, createCar, deleteCar };
