@@ -51,7 +51,7 @@ const CarPage = () => {
             <p className="car-info-desc">{car.description}</p>
 
             <button className="car-info-number">
-              <i className="fas fa-phone"></i> 0{car.phone}
+              <i className="fas fa-phone"></i> {car.phone}
             </button>
           </article>
 

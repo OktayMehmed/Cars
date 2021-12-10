@@ -78,32 +78,46 @@ export const listMyCars = () => async (dispatch, getState) => {
   }
 };
 
-export const createCar = (car) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: "CREATE_CAR_REQUEST" });
+export const carCreate =
+  (make, model, image, price, year, fuel, color, power, phone, description) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: "CREATE_CAR_REQUEST" });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const res = await fetch(`${baseUrl}/api/cars`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-      body: JSON.stringify(car)
-    });
+      const res = await fetch(`${baseUrl}/api/cars`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+        body: JSON.stringify({
+          make,
+          model,
+          image,
+          price,
+          year,
+          fuel,
+          color,
+          power,
+          phone,
+          description,
+        }),
+      });
 
-    const data = await resStatus(res);
-    dispatch({
-      type: "CREATE_CAR_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    const resError = await error;
-    dispatch({
-      type: "CREATE_CAR_FAIL",
-      payload: resError.message,
-    });
-  }
-};
+      const data = await resStatus(res);
+      dispatch({
+        type: "CREATE_CAR_SUCCESS",
+        payload: data,
+      });
+    } catch (error) {
+      const resError = await error;
+      dispatch({
+        type: "CREATE_CAR_FAIL",
+        payload: resError.message,
+      });
+    }
+  };

@@ -45,7 +45,7 @@ const createCar = (req, res) => {
 
   car.save()
   .then((createdCar) => res.status(201).json(createdCar))
-  .catch(() => res.status(400).json({ message: "Please enter all fields" }))
+  .catch((e) => res.status(400).json({ message: "Please enter all fields" }))
 };
 
 module.exports = { getCars, getCarsById, getUserCars, createCar };

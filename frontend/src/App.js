@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyCarsPage from "./pages/MyCarsPage";
+import CreateCarPage from "./pages/CreateCarPage";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/mycars" element={<MyCarsPage />} />
+          <Route path="/post-car" element={<CreateCarPage />} />
         </Routes>
       </main>
       <Footer />

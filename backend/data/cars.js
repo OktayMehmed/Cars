@@ -8,7 +8,7 @@ const cars = [
     fuel: "Petrol",
     color: "Red",
     power: 625,
-    phone: 894848488,
+    phone: 0894848488,
     description:
       "The BMW M5 is a high performance variant of the BMW 5 Series marketed under the BMW M sub-brand. It is considered an iconic vehicle in the sports sedan category.",
   },
@@ -22,7 +22,7 @@ const cars = [
     fuel: "Petrol",
     color: "Silver",
     power: 612,
-    phone: 892323233,
+    phone: 0892323233,
     description:
       "The 2021 Mercedes-AMG E63 S sedan is the materialization of pure affluence crossed with rapturous performance. It's based on the regular Mercedes-Benz E-class, but the E63 S is actually a more powerful version of the AMG E53.",
   },
@@ -36,7 +36,7 @@ const cars = [
     fuel: "Petrol",
     color: "Red",
     power: 600,
-    phone: 896666666,
+    phone: 0896666666,
     description:
       "The 2022 Audi RS7 is a super-high-performance hatchback that's as audacious as it is luxurious.",
   },
@@ -50,7 +50,7 @@ const cars = [
     fuel: "Diesel",
     color: "Grey",
     power: 270,
-    phone: 895664433,
+    phone: 0895664433,
     description:
       "The R-Line interior includes a black headliner, steering wheel with paddle shifters, contrast stitching on the steering wheel and shift knob, R-Line badging and Silver Rise Décor.",
   },
@@ -64,7 +64,7 @@ const cars = [
     fuel: "Petrol",
     color: "Red",
     power: 760,
-    phone: 897777777,
+    phone: 0897777777,
     description:
       "The 2021 Ford Mustang Shelby GT500 boasts 760 horses of supercharged-V-8 mayhem, but it also possesses the athleticism of smaller and lighter sports cars.",
   },
@@ -78,7 +78,7 @@ const cars = [
     fuel: "Petrol",
     color: "Yellow",
     power: 280,
-    phone: 893333333,
+    phone: 0893333333,
     description:
       "Renault Sport is Renault's high-performance division of Renault, based in France. Renault Sport is particularly famed for producing some of the best front-wheel drive performance cars in the world (most notably hot hatchbacks), especially the RS Clios and Meganes.",
   },
@@ -92,7 +92,7 @@ const cars = [
     fuel: "Petrol",
     color: "Black",
     power: 770,
-    phone: 898888888,
+    phone: 0898888888,
     description:
       "The Aventador SVJ can accelerate from 0–100 km/h (0–62 mph) in 2.8 seconds and 0–200 km/h (0–124 mph) in 8.6 seconds and can attain a top speed of over 352 km/h (219 mph).",
   },
@@ -106,7 +106,7 @@ const cars = [
     fuel: "Petrol",
     color: "Black",
     power: 707,
-    phone: 891212122,
+    phone: 0891212122,
     description:
       "The Trackhawk® is a beautifully high-powered SUV with the heart and spirit of a track-tuned race car. Accelerating 0-60 mph in 3.5 seconds, Trackhawk boasts a Supercharged 6.2L V8 engine and launch control.",
   },

@@ -42,9 +42,11 @@ export const createCarReducer = (state = { car: {} }, action) => {
     case "CREATE_CAR_REQUEST":
       return { loading: true };
     case "CREATE_CAR_SUCCESS":
-      return { loading: false, car: action.payload };
+      return { loading: false, success: true, car: action.payload };
     case "CREATE_CAR_FAIL":
       return { loading: false, error: action.payload };
+    case "CREATE_CAR_RESET":
+      return {};
     default:
       return state;
   }
