@@ -44,7 +44,7 @@ const Header = () => {
                 <Link to="/post-car">
                   <i className="fas fa-plus"></i> Post a car
                 </Link>
-                <Link to="/mycars">
+                <Link to="/my-cars">
                   <i className="fas fa-car"></i> My Cars
                 </Link>
               </>

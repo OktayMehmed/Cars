@@ -37,7 +37,7 @@ export const myCarsReducer = (state = { cars: [] }, action) => {
   }
 };
 
-export const createCarReducer = (state = { car: {} }, action) => {
+export const createCarReducer = (state = {}, action) => {
   switch (action.type) {
     case "CREATE_CAR_REQUEST":
       return { loading: true };
@@ -47,6 +47,19 @@ export const createCarReducer = (state = { car: {} }, action) => {
       return { loading: false, error: action.payload };
     case "CREATE_CAR_RESET":
       return {};
+    default:
+      return state;
+  }
+};
+
+export const deleteCarReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "CARS_DELETE_REQUEST":
+      return { loading: true };
+    case "CARS_DELETE_SUCCESS":
+      return { loading: false, success: true };
+    case "CARS_DELETE_FAIL":
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

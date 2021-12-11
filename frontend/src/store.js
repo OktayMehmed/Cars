@@ -13,6 +13,7 @@ import {
   carsDetailsReducer,
   myCarsReducer,
   createCarReducer,
+  deleteCarReducer,
 } from "./reducers/Cars";
 
 const reducer = combineReducers({
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   carsDetails: carsDetailsReducer,
   myCars: myCarsReducer,
   createCar: createCarReducer,
+  deleteCar: deleteCarReducer,
 });
 
 const userFromStorage = localStorage.getItem("userInfo")

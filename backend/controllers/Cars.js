@@ -20,7 +20,7 @@ const getCarsById = (req, res) => {
 // @route GET /api/cars/mycars
 // @access Private
 const getUserCars = (req, res) => {
-  Cars.find({ user: req.user._id }).then((cars) => res.json(cars));
+  Cars.find({ user: req.user._id }).then((cars) => res.json(cars)).catch((e) => res.json(e))
 };
 
 // @desc Create new car

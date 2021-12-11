@@ -121,3 +121,32 @@ export const carCreate =
       });
     }
   };
+
+export const carDelete = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "CARS_DELETE_REQUEST" });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+
+    const data = await resStatus(res);
+    dispatch({
+      type: "CARS_DELETE_SUCCESS",
+      payload: data,
+    });
+  } catch (error) {
+    const resError = await error;
+    dispatch({
+      type: "CARS_DELETE_FAIL",
+      payload: resError.message,
+    });
+  }
+};

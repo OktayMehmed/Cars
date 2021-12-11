@@ -10,4 +10,5 @@
   display: block;
   text-align: center;
 	border: none;
+  z-index: 5;
 }
