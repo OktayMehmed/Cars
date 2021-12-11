@@ -20,7 +20,9 @@ const getCarsById = (req, res) => {
 // @route GET /api/cars/mycars
 // @access Private
 const getUserCars = (req, res) => {
-  Cars.find({ user: req.user._id }).then((cars) => res.json(cars)).catch((e) => res.json(e))
+  Cars.find({ user: req.user._id })
+    .then((cars) => res.json(cars))
+    .catch((e) => res.json(e));
 };
 
 // @desc Create new car
@@ -71,4 +73,52 @@ const deleteCar = (req, res) => {
     })
     .catch(() => res.status(404).json({ message: "Car not found" }));
 };
-module.exports = { getCars, getCarsById, getUserCars, createCar, deleteCar };
+
+// @desc Update a car
+// @route PUT /api/cars/:id
+// @access Private
+const updateCar = (req, res) => {
+  const {
+    make,
+    model,
+    image,
+    price,
+    year,
+    fuel,
+    color,
+    power,
+    phone,
+    description,
+  } = req.body;
+
+  Cars.findById(req.params.id)
+    .then((car) => {
+      car.make = make;
+      car.model = model;
+      car.image = image;
+      car.price = price;
+      car.year = year;
+      car.fuel = fuel;
+      car.color = color;
+      car.power = power;
+      car.phone = phone;
+      car.description = description;
+
+      car
+        .save()
+        .then((updatedCar) => res.json(updatedCar))
+        .catch(() =>
+          res.status(400).json({ message: "Please enter all fields" })
+        );
+    })
+    .catch(() => res.status(404).json({ message: "Car not found" }));
+};
+
+module.exports = {
+  getCars,
+  getCarsById,
+  getUserCars,
+  createCar,
+  deleteCar,
+  updateCar,
+};
