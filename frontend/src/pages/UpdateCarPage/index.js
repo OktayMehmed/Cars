@@ -38,7 +38,7 @@ const UpdateCarPage = () => {
 
     if (success) {
       dispatch({ type: "CARS_UPDATE_RESET" });
-      navigate("mycars");
+      navigate("/my-cars");
     } else {
       if (!car.make || car._id !== id) {
         dispatch(listCarsDetails(id));
@@ -55,10 +55,26 @@ const UpdateCarPage = () => {
         setDescription(car.description);
       }
     }
-  }, [navigate, userInfo, dispatch, car, id]);
+  }, [navigate, userInfo, dispatch, car, id, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    dispatch(
+      carUpdate({
+        _id: id,
+        make,
+        model,
+        image,
+        price,
+        year,
+        fuel,
+        color,
+        power,
+        phone,
+        description,
+      })
+    );
   };
 
   return (
