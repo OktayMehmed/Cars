@@ -64,3 +64,16 @@ export const deleteCarReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const updateCarReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "CARS_UPDATE_REQUEST":
+      return { loading: true };
+    case "CARS_UPDATE_SUCCESS":
+      return { loading: false, success: true, car: action.payload };
+    case "CARS_UPDATE_FAIL":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

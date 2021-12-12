@@ -150,3 +150,34 @@ export const carDelete = (id) => async (dispatch, getState) => {
     });
   }
 };
+
+export const carUpdate = (car) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "CARS_UPDATE_REQUEST" });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+      body: JSON.stringify(car)
+    });
+
+    const data = await resStatus(res);
+    dispatch({
+      type: "CARS_UPDATE_SUCCESS",
+      payload: data,
+    });
+  } catch (error) {
+    const resError = await error;
+    dispatch({
+      type: "CARS_UPDATE_FAIL",
+      payload: resError.message,
+    });
+  }
+};
