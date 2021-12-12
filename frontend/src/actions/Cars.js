@@ -159,7 +159,7 @@ export const carUpdate = (car) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+    const res = await fetch(`${baseUrl}/api/cars/${car._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

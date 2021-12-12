@@ -10,6 +10,8 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyCarsPage from "./pages/MyCarsPage";
 import CreateCarPage from "./pages/CreateCarPage";
+import UpdateCarPage from './pages/UpdateCarPage'
+ 
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/my-cars" element={<MyCarsPage />} />
           <Route path="/post-car" element={<CreateCarPage />} />
+          <Route path="/cars/:id/edit" element={<UpdateCarPage />} />
         </Routes>
       </main>
       <Footer />

@@ -73,6 +73,8 @@ export const updateCarReducer = (state = {}, action) => {
       return { loading: false, success: true, car: action.payload };
     case "CARS_UPDATE_FAIL":
       return { loading: false, error: action.payload };
+    case "CARS_UPDATE_RESET":
+      return {};
     default:
       return state;
   }
