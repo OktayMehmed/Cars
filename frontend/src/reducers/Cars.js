@@ -79,3 +79,16 @@ export const updateCarReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const carImgUploadReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "CARS_IMG_UPLOAD_REQUEST":
+      return { loading: true };
+    case "CARS_IMG_UPLOAD_SUCCESS":
+      return { loading: false, success: true, img: action.payload };
+    case "CARS_IMG_UPLOAD_FAIL":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

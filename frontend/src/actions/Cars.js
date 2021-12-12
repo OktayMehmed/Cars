@@ -165,7 +165,7 @@ export const carUpdate = (car) => async (dispatch, getState) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
-      body: JSON.stringify(car)
+      body: JSON.stringify(car),
     });
 
     const data = await resStatus(res);
@@ -177,6 +177,37 @@ export const carUpdate = (car) => async (dispatch, getState) => {
     const resError = await error;
     dispatch({
       type: "CARS_UPDATE_FAIL",
+      payload: resError.message,
+    });
+  }
+};
+
+export const uploadCarImg = (formData) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "CARS_IMG_UPLOAD_REQUEST" });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const res = await fetch(`${baseUrl}/api/uploads`, {
+      method: "POST",
+      headers: {
+        "Contet-type": "multipart/form-data",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await resStatus(res);
+    dispatch({
+      type: "CARS_IMG_UPLOAD_SUCCESS",
+      payload: data,
+    });
+  } catch (error) {
+    const resError = await error;
+    dispatch({
+      type: "CARS_IMG_UPLOAD_FAIL",
       payload: resError.message,
     });
   }
