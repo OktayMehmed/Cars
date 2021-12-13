@@ -10,8 +10,8 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyCarsPage from "./pages/MyCarsPage";
 import CreateCarPage from "./pages/CreateCarPage";
-import UpdateCarPage from './pages/UpdateCarPage'
- 
+import UpdateCarPage from "./pages/UpdateCarPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   return (
@@ -19,6 +19,7 @@ const App = () => {
       <Header />
       <main>
         <Routes>
+          <Route path="*" element={<NotFoundPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/car/:id" element={<CarPage />} />
           <Route path="/login" element={<LoginPage />} />

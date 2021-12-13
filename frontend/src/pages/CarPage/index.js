@@ -55,7 +55,7 @@ const CarPage = () => {
             </button>
           </article>
 
-          <img className="car-image" src={car.image} alt={car.make} />
+          <img className="car-image" src={"http://localhost:8000" + car.image} alt={car.make} />
         </section>
       )}
     </>
