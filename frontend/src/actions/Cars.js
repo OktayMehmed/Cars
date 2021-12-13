@@ -182,25 +182,3 @@ export const carUpdate = (car) => async (dispatch, getState) => {
   }
 };
 
-export const uploadCarImg = (formData) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: "CARS_IMG_UPLOAD_REQUEST" });
-
-    const res = await fetch(`${baseUrl}/api/uploads`, {
-      method: "POST",
-      body: formData
-    });
-
-    const data = await resStatus(res);
-    dispatch({
-      type: "CARS_IMG_UPLOAD_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    const resError = await error;
-    dispatch({
-      type: "CARS_IMG_UPLOAD_FAIL",
-      payload: resError.message
-    });
-  }
-};

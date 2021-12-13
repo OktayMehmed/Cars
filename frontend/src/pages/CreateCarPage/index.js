@@ -4,22 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
-import { carCreate, uploadCarImg } from "../../actions/Cars";
+import { carCreate } from "../../actions/Cars";
 
 const CreateCarPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [image, setImage] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const createCar = useSelector((state) => state.createCar);
   const { loading, error, success } = createCar;
-
-  const carImgUpload = useSelector((state) => state.carImgUpload);
-  const { loading: imgLoading, img } = carImgUpload;
 
   useEffect(() => {
     if (!userInfo) {
@@ -29,37 +27,39 @@ const CreateCarPage = () => {
       navigate("/");
       dispatch({ type: "CREATE_CAR_RESET" });
     }
-  }, [navigate, userInfo, dispatch, success, img]);
+  }, [navigate, userInfo, dispatch, success]);
 
-  const uploadImageHandler = (e) => {
+  const uploadImageHandler = async(e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
+    setLoader(true);
 
-    dispatch(uploadCarImg(formData));
+    try {
+      let res = await fetch("http://localhost:8000/api/uploads", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      setImage(data);
+      setLoader(false)
+    } catch (error) {
+      console.error(error);
+      setLoader(false)
+    }
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const {
-      make,
-      model,
-      price,
-      year,
-      fuel,
-      color,
-      power,
-      phone,
-      description,
-    } = Object.fromEntries(formData);
-    console.log(img);
+    const { make, model, price, year, fuel, color, power, phone, description } =
+      Object.fromEntries(formData);
     dispatch(
       carCreate(
         make,
         model,
-        img,
+        image,
         price,
         year,
         fuel,
@@ -79,7 +79,11 @@ const CreateCarPage = () => {
       ) : (
         <section className="car-create-form-container">
           <h2 className="car-form-title">Create a car</h2>
-          <form onSubmit={submitHandler} className="car-form">
+          <form
+            onSubmit={submitHandler}
+            className="car-form"
+            encType="multipart/form-data"
+          >
             <div className="car-form-second-container">
               <div className="car-form-first">
                 <article>
@@ -120,15 +124,22 @@ const CreateCarPage = () => {
                 </article>
                 <article className="car-form-image">
                   <input
-                    type="file"
-                    name="image"
+                    type="text"
                     id="image"
+                    placeholder="Image"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                  />
+                </article>
+                <article className="car-form-image">
+                  <input
+                    type="file"
+                    id="image-file"
                     placeholder="Image"
                     onChange={uploadImageHandler}
                   />
-                  {imgLoading && <Loader />}
+                  {loader && <Loader />}
                 </article>
-
                 <article className="car-form-price">
                   <input
                     type="number"

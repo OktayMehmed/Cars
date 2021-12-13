@@ -7,7 +7,7 @@ const Car = ({ car }) => {
       <article className="each-car">
         <div className="each-car-container">
           <Link to={`/car/${car._id}`}>
-            <img className="each-car-image" src={car.image} alt={car.make} />
+            <img className="each-car-image" src={"http://localhost:8000" + car.image} alt={car.make} />
           </Link>
         </div>
 

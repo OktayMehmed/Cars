@@ -43,7 +43,7 @@ const MyCarsPage = () => {
         <section className="my-cars">
           {cars.map((car) => (
             <article className="my-car" key={car._id}>
-              <img className="my-car-img" src={car.image} alt={car.make} />
+              <img className="my-car-img" src={ "http://localhost:8000" + car.image} alt={car.make} />
 
               <article className="my-car-info">
                 <h1 className="my-car-title">

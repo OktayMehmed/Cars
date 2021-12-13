@@ -21,6 +21,7 @@ const UpdateCarPage = () => {
   const [power, setPower] = useState(0);
   const [phone, setPhone] = useState(0);
   const [description, setDescription] = useState("");
+  const [imgLoader, setImgLoader] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -56,6 +57,26 @@ const UpdateCarPage = () => {
       }
     }
   }, [navigate, userInfo, dispatch, car, id, success]);
+
+  const uploadImageHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setImgLoader(true)
+
+    try {
+      let res = await fetch("http://localhost:8000/api/uploads", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      setImage(data)
+      setImgLoader(false)
+    } catch (error) {
+      console.error(error);
+      setImgLoader(false)
+    }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -135,12 +156,20 @@ const UpdateCarPage = () => {
                 <article className="car-form-image">
                   <input
                     type="text"
-                    name="image"
                     id="image"
                     placeholder="Image"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                   />
+                </article>
+                <article className="car-form-image">
+                  <input
+                    type="file"
+                    id="image-file"
+                    placeholder="Image"
+                    onChange={uploadImageHandler}
+                  />
+                  {imgLoader && <Loader />}
                 </article>
                 <article className="car-form-price">
                   <input

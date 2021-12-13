@@ -26,6 +26,7 @@ app.use("/api/cars", Cars);
 app.use("/api/users", User);
 app.use("/api/uploads", Upload);
 
+
 __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
