@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
-import { carCreate } from "../../actions/Cars";
+import { carCreate, uploadCarImg } from "../../actions/Cars";
 
 const CreateCarPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [image, setImage] = useState("");
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -16,17 +18,26 @@ const CreateCarPage = () => {
   const createCar = useSelector((state) => state.createCar);
   const { loading, error, success } = createCar;
 
-  useEffect(() => {
-    dispatch({ type: "CREATE_CAR_RESET" });
+  const carImgUpload = useSelector((state) => state.carImgUpload);
+  const { loading: imgLoading, img } = carImgUpload;
 
+  useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
-
-    if(success) {
-      navigate('/')
+    if (success) {
+      navigate("/");
+      dispatch({ type: "CREATE_CAR_RESET" });
     }
-  }, [navigate, userInfo, dispatch, success]);
+  }, [navigate, userInfo, dispatch, success, img]);
+
+  const uploadImageHandler = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+
+    dispatch(uploadCarImg(formData));
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,7 +46,6 @@ const CreateCarPage = () => {
     const {
       make,
       model,
-      image,
       price,
       year,
       fuel,
@@ -44,12 +54,12 @@ const CreateCarPage = () => {
       phone,
       description,
     } = Object.fromEntries(formData);
-
+    console.log(img);
     dispatch(
       carCreate(
         make,
         model,
-        image,
+        img,
         price,
         year,
         fuel,
@@ -67,7 +77,7 @@ const CreateCarPage = () => {
       {loading ? (
         <Loader />
       ) : (
-        <section className="car-form-container">
+        <section className="car-create-form-container">
           <h2 className="car-form-title">Create a car</h2>
           <form onSubmit={submitHandler} className="car-form">
             <div className="car-form-second-container">
@@ -110,12 +120,15 @@ const CreateCarPage = () => {
                 </article>
                 <article className="car-form-image">
                   <input
-                    type="text"
+                    type="file"
                     name="image"
                     id="image"
                     placeholder="Image"
+                    onChange={uploadImageHandler}
                   />
+                  {imgLoading && <Loader />}
                 </article>
+
                 <article className="car-form-price">
                   <input
                     type="number"

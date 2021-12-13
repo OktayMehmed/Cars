@@ -85,7 +85,7 @@ export const carImgUploadReducer = (state = {}, action) => {
     case "CARS_IMG_UPLOAD_REQUEST":
       return { loading: true };
     case "CARS_IMG_UPLOAD_SUCCESS":
-      return { loading: false, success: true, img: action.payload };
+      return { loading: false, img: action.payload };
     case "CARS_IMG_UPLOAD_FAIL":
       return { loading: false, error: action.payload };
     default:

@@ -186,17 +186,9 @@ export const uploadCarImg = (formData) => async (dispatch, getState) => {
   try {
     dispatch({ type: "CARS_IMG_UPLOAD_REQUEST" });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
     const res = await fetch(`${baseUrl}/api/uploads`, {
       method: "POST",
-      headers: {
-        "Contet-type": "multipart/form-data",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-      body: JSON.stringify(formData),
+      body: formData
     });
 
     const data = await resStatus(res);
@@ -208,7 +200,7 @@ export const uploadCarImg = (formData) => async (dispatch, getState) => {
     const resError = await error;
     dispatch({
       type: "CARS_IMG_UPLOAD_FAIL",
-      payload: resError.message,
+      payload: resError.message
     });
   }
 };
