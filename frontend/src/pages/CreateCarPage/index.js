@@ -36,7 +36,7 @@ const CreateCarPage = () => {
     setLoader(true);
 
     try {
-      let res = await fetch("http://localhost:8000/api/uploads", {
+      let res = await fetch("/api/uploads", {
         method: "POST",
         body: formData,
       });
