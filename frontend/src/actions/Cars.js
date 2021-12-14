@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost:8000";
-
 function resStatus(res) {
   if (res.ok) {
     return res.json();
@@ -12,7 +10,7 @@ export const listCars = () => async (dispatch) => {
   try {
     dispatch({ type: "CARS_LIST_REQUEST" });
 
-    const res = await fetch(`${baseUrl}/api/cars`);
+    const res = await fetch(`/api/cars`);
 
     const data = await resStatus(res);
 
@@ -33,7 +31,7 @@ export const listCarsDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: "CARS_DETAILS_REQUEST" });
 
-    const res = await fetch(`${baseUrl}/api/cars/${id}`);
+    const res = await fetch(`/api/cars/${id}`);
 
     const data = await resStatus(res);
     dispatch({
@@ -57,7 +55,7 @@ export const listMyCars = () => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/cars/mycars`, {
+    const res = await fetch(`/api/cars/mycars`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
@@ -88,7 +86,7 @@ export const carCreate =
         userLogin: { userInfo },
       } = getState();
 
-      const res = await fetch(`${baseUrl}/api/cars`, {
+      const res = await fetch(`/api/cars`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +128,7 @@ export const carDelete = (id) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+    const res = await fetch(`/api/cars/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
@@ -159,7 +157,7 @@ export const carUpdate = (car) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/cars/${car._id}`, {
+    const res = await fetch(`/api/cars/${car._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

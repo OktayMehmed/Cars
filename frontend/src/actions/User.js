@@ -1,4 +1,3 @@
-const baseUrl = "http://localhost:8000";
 
 function resStatus(res) {
   if (res.ok) {
@@ -12,7 +11,7 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_REQUEST" });
 
-    const res = await fetch(`${baseUrl}/api/users/login`, {
+    const res = await fetch(`/api/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +39,7 @@ export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({ type: "USER_REGISTER_REQUEST" });
 
-    const res = await fetch(`${baseUrl}/api/users`, {
+    const res = await fetch(`/api/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +76,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/users/profile`, {
+    const res = await fetch(`/api/users/profile`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +106,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const res = await fetch(`${baseUrl}/api/users/profile`, {
+    const res = await fetch(`/api/users/profile`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
