@@ -11,7 +11,7 @@ Cars is platform for sale on new and used cars. You can browse many different ca
 * React Hooks
 * Redux
 * Styled with CSS
-* JTW for Authentication
+* JWT for Authentication
 
 ## Contact
 
