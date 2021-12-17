@@ -101,7 +101,7 @@ const UpdateCarPage = () => {
   return (
     <>
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      {loading ? (
+      {loading || imgLoader ? (
         <Loader />
       ) : (
         <section className="car-form-container">
@@ -169,7 +169,6 @@ const UpdateCarPage = () => {
                     placeholder="Image"
                     onChange={uploadImageHandler}
                   />
-                  {imgLoader && <Loader />}
                 </article>
                 <article className="car-form-price">
                   <input

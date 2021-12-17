@@ -29,7 +29,7 @@ const CreateCarPage = () => {
     }
   }, [navigate, userInfo, dispatch, success]);
 
-  const uploadImageHandler = async(e) => {
+  const uploadImageHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
@@ -42,10 +42,10 @@ const CreateCarPage = () => {
       });
       const data = await res.json();
       setImage(data);
-      setLoader(false)
+      setLoader(false);
     } catch (error) {
       console.error(error);
-      setLoader(false)
+      setLoader(false);
     }
   };
 
@@ -74,7 +74,7 @@ const CreateCarPage = () => {
   return (
     <>
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      {loading ? (
+      {loading || loader ? (
         <Loader />
       ) : (
         <section className="car-create-form-container">
@@ -138,7 +138,6 @@ const CreateCarPage = () => {
                     placeholder="Image"
                     onChange={uploadImageHandler}
                   />
-                  {loader && <Loader />}
                 </article>
                 <article className="car-form-price">
                   <input
