@@ -34,7 +34,7 @@ const registerUser = (req, res, next) => {
 
   User.findOne({ email }).then((userExist) => {
     if (userExist) {
-      res.status(400).json({ message: "User already exist" });
+      res.status(400).json({ message: "Email already exist" });
       return;
     } else {
       User.create({
@@ -54,7 +54,7 @@ const registerUser = (req, res, next) => {
             res.status(400).json({ message: "Invalid user data" });
           }
         })
-        .catch((e) => res.status(400).json(e));
+        .catch((e) => res.status(400).json({ message: "Invalid user data" }));
     }
   });
 };
