@@ -17,6 +17,7 @@ const Header = () => {
   const { car, error: carError } = carsDetails;
 
   const logoutHandler = () => {
+    setShowNav(false)
     dispatch(logout());
   };
 
@@ -38,18 +39,18 @@ const Header = () => {
                 <Link to="/" onClick={logoutHandler}>
                   <i className="fas fa-sign-out-alt"></i> Logout
                 </Link>
-                <Link to="/profile">
+                <Link to="/profile" onClick={() => setShowNav(false)}>
                   <i className="fas fa-user"></i> Profile
                 </Link>
-                <Link to="/post-car">
+                <Link to="/post-car" onClick={() => setShowNav(false)}>
                   <i className="fas fa-plus"></i> Post a car
                 </Link>
-                <Link to="/my-cars">
+                <Link to="/my-cars" onClick={() => setShowNav(false)}>
                   <i className="fas fa-car"></i> My Cars
                 </Link>
               </>
             ) : (
-              <Link to="/login">
+              <Link to="/login" onClick={() => setShowNav(false)}>
                 <i className="fas fa-sign-in-alt"></i> Login
               </Link>
             )}
