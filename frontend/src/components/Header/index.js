@@ -33,7 +33,7 @@ const Header = () => {
             {userInfo && (
               <p className="header-username">Hello, {userInfo.name}</p>
             )}
-            <Link to="/">Home</Link>
+            <Link to="/"  onClick={() => setShowNav(false)}>Home</Link>
             {userInfo ? (
               <>
                 <Link to="/" onClick={logoutHandler}>

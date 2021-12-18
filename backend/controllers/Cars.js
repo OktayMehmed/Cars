@@ -4,7 +4,15 @@ const Cars = require("../models/Cars");
 // @route GET /api/cars
 // @access Public
 const getCars = (req, res) => {
-  Cars.find({}).then((cars) => res.json(cars));
+  const search = req.query.search
+    ? {
+        make: {
+          $regex: req.query.search,
+          $options: "i"
+        },
+      }
+    : {};
+  Cars.find({ ...search }).then((cars) => res.json(cars));
 };
 
 // @desc Fetch single car

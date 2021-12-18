@@ -6,11 +6,11 @@ function resStatus(res) {
   }
 }
 
-export const listCars = () => async (dispatch) => {
+export const listCars = (search = "") => async (dispatch) => {
   try {
     dispatch({ type: "CARS_LIST_REQUEST" });
 
-    const res = await fetch(`/api/cars`);
+    const res = await fetch(`/api/cars?search=${search}`);
 
     const data = await resStatus(res);
 
@@ -179,4 +179,3 @@ export const carUpdate = (car) => async (dispatch, getState) => {
     });
   }
 };
-

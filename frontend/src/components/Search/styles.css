@@ -1,0 +1,24 @@
+.car-search {
+  text-align: center;
+}
+
+.car-search input {
+  margin: 5px;
+  width: 200px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+}
+
+.car-search button {
+  background: #ff7214;
+  color: white;
+  padding: 9px;
+  border-radius: 10px;
+  border: none;
+}
+
+.car-search button:hover {
+  cursor: pointer;
+  background: #ff7214b8;
+}

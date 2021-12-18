@@ -12,6 +12,7 @@ import MyCarsPage from "./pages/MyCarsPage";
 import CreateCarPage from "./pages/CreateCarPage";
 import UpdateCarPage from "./pages/UpdateCarPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Search from "./components/Search";
 
 const App = () => {
   return (
@@ -28,6 +29,8 @@ const App = () => {
           <Route path="/post-car" element={<CreateCarPage />} />
           <Route path="/cars/:id/edit" element={<UpdateCarPage />} />
           <Route path="/my-cars" element={<MyCarsPage />} />
+          <Route path="/search/:search" element={<HomePage />} />
+          <Route path="/Search" element={<Search />} />
         </Routes>
       </main>
       <Footer />
