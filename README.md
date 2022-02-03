@@ -15,6 +15,6 @@ Cars is platform for sale on new and used cars. You can browse many different ca
 
 ## Contact
 
-Oktay Mehmed - oktaymehmedd@gmail.com
+Oktay Mehmed - https://www.linkedin.com/in/oktay-mehmed-9140b6204/ -oktaymehmedd@gmail.com
 
 Project Link: https://carsbest.herokuapp.com/
